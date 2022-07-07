@@ -138,7 +138,7 @@ function App() {
   const renderConnectWalletButton = () => {
     return (
       <div>
-        <button onClick={connectWallet} className='py-3 px-20 text-lg font-semibold rounded-md bg-gradient-to-r from-purple-600 via-red-500 to-orange-500 background-animate'>
+        <button onClick={connectWallet} className='py-3 px-51 text-lg font-semibold rounded-md bg-gradient-to-r from-purple-600 via-red-500 to-orange-500 background-animate'>
           Connect Wallet
         </button>
       </div>
