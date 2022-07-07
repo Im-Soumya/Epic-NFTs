@@ -4,7 +4,6 @@ import React, {useEffect, useState } from "react";
 import { ethers } from "ethers";
 import contractAbi from "./utils/MyEpicNFT.json";
 
-// Constants
 const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = 'https://testnets.opensea.io/collection/square-nfts-8tc1n7h1rz';
@@ -15,7 +14,7 @@ function App() {
   const [nftsMinted, setNftsMinted] = useState(0);
   const [minting, setMinting] = useState(false);
 
-  const contractAddress = "0xAC5B3B3Dad1b8F7C3253cc73Fa2A56913E9B9EFF";
+  const contractAddress = "0xCa4743fa40f25905C69D6f521a7aC9803516D7b2";
   const rinkebyChainId = "0x4";
 
   const checkWalletConnected = async () => {
