@@ -3,12 +3,13 @@ import twitterLogo from './assets/twitter-logo.svg';
 import React, {useEffect, useState } from "react";
 import { ethers } from "ethers";
 import contractAbi from "./utils/MyEpicNFT.json";
-import {FaEthereum} from "react-icons/fa";
+import {FaEthereum, FaWallet} from "react-icons/fa";
 import {BsGithub} from "react-icons/bs";
+import {GiLaserBurst} from "react-icons/gi";
 
 const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = 'https://testnets.opensea.io/collection/square-nfts-2wub9weyid';
+const OPENSEA_LINK = 'https://testnets.opensea.io/collection/square-nfts-kve4dq0qcp';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
   const [minting, setMinting] = useState(false);
   const [network, setNetwork] = useState("");
 
-  const contractAddress = "0xCa4743fa40f25905C69D6f521a7aC9803516D7b2";
+  const contractAddress = "0x63d61acffF2f3416668E675fa40ce51F4ef6Ac21";
   const rinkebyChainId = "0x4";
 
   const checkWalletConnected = async () => {
@@ -133,7 +134,7 @@ function App() {
   const renderConnectWalletButton = () => {
     return (
       <div>
-        <button onClick={connectWallet} className='cta-button connect-wallet-button'>
+        <button onClick={connectWallet} className='py-3 px-20 text-lg font-semibold rounded-md bg-gradient-to-r from-purple-600 via-red-500 to-orange-500 background-animate'>
           Connect Wallet
         </button>
       </div>
@@ -143,7 +144,7 @@ function App() {
   const renderMintNFTButton = () => {
     return (
       <div>
-        <button onClick={mintNFt} className="transition ease-in-out delay-150 py-2 px-7 rounded-md bg-indigo-500 hover:bg-cyan-600">
+        <button onClick={mintNFt} className="py-3 px-20 text-lg font-semibold rounded-md bg-gradient-to-r from-purple-600 via-red-500 to-orange-500 background-animate">
           {
             minting ? "Minting..." : "Mint NFT"
           }
@@ -158,19 +159,20 @@ function App() {
 
   return (
     <div className='h-screen bg-slate-900 text-white'>
-      <div className='absolute top-0 w-full p-3 flex justify-between items-center'>
+      <div className='absolute top-0 w-full py-4 px-7 flex justify-between items-center'>
         <div className='flex justify-evenly items-center'>
-        <h2>My Epic NFTs</h2>
+        <a className='p-2 text-3xl text-amber-300'><GiLaserBurst /></a>
+        <h2 className='mr-8 font-semibold text-lg'>My Epic NFTs</h2>
         <a 
-          className='transition ease-in-out delay-150 p-2 text-2xl rounded-md bg-slate-800 hover:text-emerald-200'
-          href="https://rinkeby.etherscan.io/address/0xA0D169707C050F785E1A3BCDfA0bb1741e86B9D2#code"
+          className='transition ease-in-out delay-150 p-2 mr-3 text-2xl rounded-md bg-slate-800 hover:text-emerald-300'
+          href="https://rinkeby.etherscan.io/address/0x63d61acffF2f3416668E675fa40ce51F4ef6Ac21#code"
           target="_blank"
           rel="noreferrer"
         >
           <FaEthereum />
         </a>
         <a 
-          className='transition ease-in-out delay-150 p-2 text-2xl rounded-md bg-slate-800 hover:text-emerald-200'
+          className='transition ease-in-out delay-150 p-2 text-2xl rounded-md bg-slate-800 hover:text-emerald-300'
           href="https://github.com/Im-Soumya/my-nfts"
           target="_blank"
           rel="noreferrer"
@@ -182,17 +184,34 @@ function App() {
           {
             network !== rinkebyChainId ? 
             (
-              <p className='text-red-400'>Change your network to Rinkeby</p>
+              <span className='flex items-center'>
+                <FaWallet className='mr-2 text-xl text-emerald-200'/>
+                <p className='text-rose-600'>Change your network to Rinkeby</p>
+              </span>
             ) :
             (
-              <p>Rinkeby</p>
+              <span className='flex items-center'>
+                <FaWallet className='mr-2 text-xl text-emerald-200' />
+                <p>Rinkeby</p>
+              </span>
             )
           }
         </div>
       </div>
       <div className='h-full flex-col justify-center items-center'>
-        <h1 className='text-4xl text-center font-semibold py-3 pt-20'>Welcome to My Epic NFT collection</h1>
-        <h3 className='text-xl text-center py-3'>Hi, I'm Soumya👋</h3>
+        <h1 className='text-6xl text-center font-semibold py-3 pt-36 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-orange-500'>Welcome to My Epic NFT collection</h1>
+        <h3 className='text-2xl text-center pt-5 pb-4'>Each Unique. Each Beautiful. Discover one for yourself.</h3>
+        <div className='flex justify-center text-md pt-6 pb-1'>
+          {
+            nftsMinted > 0 ? 
+            (
+              <p>{`${nftsMinted}/25 NFTs minted till now`}</p>
+            ) :
+            (
+              <p>0/25 NFTs minted till now</p>
+            )
+          }
+        </div>
         <div className='flex justify-center py-5'>
         {
           currentAccount === "" ? 
@@ -204,27 +223,35 @@ function App() {
           )
         }
         </div>
-      </div>
-      <div className="absolute bottom-0">
-        <div>
-          <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
+        <div className='flex justify-center'>
           <a
-            className="footer-text"
+            className='py-3 px-9 text-lg font-semibold rounded-md bg-gradient-to-r from-purple-600 via-red-500 to-orange-500 background-animate'
+            href={OPENSEA_LINK}
+            target="_blank"
+            rel="noreferrer"
+          >
+            🌊 View Collection
+          </a>
+        </div>
+      </div>
+      <div className="absolute bottom-0 w-full flex justify-center items-center ">
+        <div className='transition ease-in-out delay-150 flex justify-center items-center mr-4 hover:-translate-y-1 hover:underline'>
+          <img alt="Twitter Logo" className="object-contain w-9 h-9" src={twitterLogo} />
+          <a
             href={TWITTER_LINK}
             target="_blank"
             rel="noreferrer"
           >{`built on @${TWITTER_HANDLE}`}</a>
         </div>
-        <div className="footer-container">
-          <img alt=""/>
+        <div className='transition ease-in-out delay-150 flex justify-center items-center hover:-translate-y-1 hover:underline'>
+        <img alt="Twitter Logo" className="object-contain w-9 h-9" src={twitterLogo} />
           <a
-            className='footer-text'
-            href={OPENSEA_LINK}
+            href="https://twitter.com/iamsoumyass"
             target="_blank"
             rel="noreferrer"
           >
-          🌊 View Collection on OpenSea
-          </a>
+            built by @iamsoumyass
+          </a>          
         </div>
       </div>
     </div>
@@ -232,5 +259,3 @@ function App() {
 }
 
 export default App;
-
-// className="header gradient-text"
