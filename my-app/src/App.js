@@ -32,11 +32,12 @@ function App() {
       alert("Change your network to Rinkeby");
     }    
 
+    getTotalNFTsMinted();
+    
     const accounts = await ethereum.request({ method: "eth_accounts" });
     if (accounts.length !== 0) {
       console.log("Authorised account detected", accounts[0]);
       setCurrentAccount(accounts[0]);    
-      getTotalNFTsMinted();
       setupEventListener();
       } else {
         console.log("No authosrised account found");
