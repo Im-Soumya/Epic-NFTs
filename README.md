@@ -5,3 +5,5 @@ This project uses a smart-contract developed in Solidity using Hardhat framework
 Here, users will be able to mint their NFTs by connecting their wallets. They will receive a NFT with a word which is randomly generated. They can view the NFTs on Opensea.
 
 Guide from **[buildspace](https://buildspace.so/)**
+
+Link to the website: https://my-epic-nfts.vercel.app/
