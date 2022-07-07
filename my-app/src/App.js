@@ -3,13 +3,14 @@ import twitterLogo from './assets/twitter-logo.svg';
 import React, {useEffect, useState } from "react";
 import { ethers } from "ethers";
 import contractAbi from "./utils/MyEpicNFT.json";
-import {FaEthereum, FaWallet} from "react-icons/fa";
+import {FaEthereum} from "react-icons/fa";
 import {BsGithub} from "react-icons/bs";
 import {GiLaserBurst} from "react-icons/gi";
+import {SiHiveBlockchain} from "react-icons/si";
 
 const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = 'https://testnets.opensea.io/collection/square-nfts-kve4dq0qcp';
+const OPENSEA_LINK = 'https://testnets.opensea.io/collection/square-nfts-pdth5qblrp';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
   const [minting, setMinting] = useState(false);
   const [network, setNetwork] = useState("");
 
-  const contractAddress = "0x63d61acffF2f3416668E675fa40ce51F4ef6Ac21";
+  const contractAddress = "0xc769De7961231A7c7b9eE2984fF0A7373b9Ce352";
   const rinkebyChainId = "0x4";
 
   const checkWalletConnected = async () => {
@@ -60,7 +61,10 @@ function App() {
       const accounts = await ethereum.request({ method: "eth_requestAccounts" });
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
-      getTotalNFTsMinted();
+      
+      if(network === rinkebyChainId) {
+        getTotalNFTsMinted();
+      }
       // setupEventListener();
     } catch (e) {
       console.error(e);
@@ -165,7 +169,7 @@ function App() {
         <h2 className='mr-8 font-semibold text-lg'>My Epic NFTs</h2>
         <a 
           className='transition ease-in-out delay-150 p-2 mr-3 text-2xl rounded-md bg-slate-800 hover:text-emerald-300'
-          href="https://rinkeby.etherscan.io/address/0x63d61acffF2f3416668E675fa40ce51F4ef6Ac21#code"
+          href="https://rinkeby.etherscan.io/address/0xc769De7961231A7c7b9eE2984fF0A7373b9Ce352#code"
           target="_blank"
           rel="noreferrer"
         >
@@ -185,13 +189,13 @@ function App() {
             network !== rinkebyChainId ? 
             (
               <span className='flex items-center'>
-                <FaWallet className='mr-2 text-xl text-emerald-200'/>
+                <SiHiveBlockchain className='mr-2 text-xl text-emerald-200'/>
                 <p className='text-rose-600'>Change your network to Rinkeby</p>
               </span>
             ) :
             (
               <span className='flex items-center'>
-                <FaWallet className='mr-2 text-xl text-emerald-200' />
+                <SiHiveBlockchain className='mr-2 text-xl text-emerald-200' />
                 <p>Rinkeby</p>
               </span>
             )
