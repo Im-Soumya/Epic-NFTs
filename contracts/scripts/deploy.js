@@ -1,5 +1,7 @@
+const { ethers } = require("hardhat");
+
 const main = async () => {
-  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFT');
+  const nftContractFactory = await ethers.getContractFactory("MyEpicNFT");
   const nftContract = await nftContractFactory.deploy();
   await nftContract.deployed();
   console.log("Contract deployed: ", nftContract.address);
